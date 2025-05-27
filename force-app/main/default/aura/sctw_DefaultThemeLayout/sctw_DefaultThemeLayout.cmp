@@ -1,0 +1,40 @@
+<aura:component
+  implements="forceCommunity:themeLayout"
+  access="global"
+  description="TailwindCSS Default Theme Layout"
+>
+  <aura:attribute name="search" type="Aura.Component[]" required="false" />
+  <aura:attribute name="profileMenu" type="Aura.Component[]" required="false" />
+  <aura:attribute name="navBar" type="Aura.Component[]" required="false" />
+  <aura:attribute name="title" type="String" required="false" />
+
+  <ltng:require
+    styles="{!$Resource.sctw_GlobalCommunityStyles + '/bin/global.css'}"
+  />
+
+  <div>
+    <header
+      class="flex flex-wrap md:flex-no-wrap container mx-auto mt-4 mb-12 px-4"
+    >
+      <div class="flex-shrink-0 font-bold text-2xl text-lwc-brand mr-4">
+        {!v.title}
+      </div>
+      <div
+        class="flex-shrink-0 md:flex-shrink md:flex-grow mr-4 order-first md:order-none"
+      >
+        {!v.navBar}
+      </div>
+      <div
+        class="w-full md:w-1/5 mt-4 md:mt-0 md:mr-4 pl-10 md:pl-0 order-last md:order-none"
+      >
+        {!v.search}
+      </div>
+      <div
+        class="flex flex-grow md:flex-grow-0 flex-col justify-center md:w-1/5"
+      >
+        {!v.profileMenu}
+      </div>
+    </header>
+    <div>{!v.body}</div>
+  </div>
+</aura:component>

@@ -1,0 +1,14 @@
+<template>
+    <template if:true={showMessage}>
+        <div class="alert-box" style={alertStyle}>
+            <span class="icon">
+                <lightning-icon icon-name={iconName} size="small" class="animated-icon"></lightning-icon>
+            </span>
+            <div class="message-content">
+                <strong>{title}</strong>
+                <p>{message}</p>
+            </div>
+            <span class="close-button" onclick={closeMessage}>×</span>
+        </div>
+    </template>
+</template>

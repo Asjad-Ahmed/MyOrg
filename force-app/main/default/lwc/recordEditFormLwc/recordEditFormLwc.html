@@ -1,0 +1,29 @@
+<template>
+    <!-- <lightning-record-edit-form
+        object-api-name="Account"
+        record-id="0015i0000192PFfAAM"
+    >
+        <div class="slds-var-m-top_medium">
+            <lightning-button variant="brand" type="submit" label="Save">
+            </lightning-button>
+        </div>
+    </lightning-record-edit-form> -->
+
+    <div class="slds-var-m-horizontal_medium">
+        <lightning-card icon-name="standard:account">
+            <h1 slot="title">GraphQL (Example)</h1>
+        </lightning-card>
+        <template lwc:if={results}>
+            <template for:each={results} for:item="account">
+                <div key={account.Id}>
+                <lightning-card icon-name="standard:account">
+                    <h1 slot="title">{account.Name.value}</h1>
+                </lightning-card>
+                </div>
+            </template>
+        </template>
+    </div>
+
+    <lightning-button variant="brand" onclick={test} type="submit" label="Test">
+    </lightning-button>
+</template>

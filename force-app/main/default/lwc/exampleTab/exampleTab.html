@@ -1,0 +1,42 @@
+<template>
+    <div class="slds-theme_default slds-p-around_small " style="border-radius: 5px; height: 100vh;">
+        <lightning-tabset>
+            <lightning-tab label="Add Product" title="2nd tab extended title">
+                <c-add-product-drag-drop-lwc></c-add-product-drag-drop-lwc>
+            </lightning-tab>
+            <lightning-tab label="Hunter Calender">
+                <c-calender-lwc></c-calender-lwc>
+            </lightning-tab>
+           
+            <lightning-tab class="slds-theme_shade" style="border-radius: 5px;" label="Simple Drag Drop">
+                <div class="slds-theme_default slds-m-around_small" style="border-radius: 5px; box-shadow: 5px 5px 10px #b8b8b8, -5px -5px 10px #ffffff;">
+                    <c-drag-drop-component></c-drag-drop-component>
+                </div>
+            </lightning-tab>
+           
+            
+            <lightning-tab label="Simple Calender">
+                <div class="slds-theme_default slds-m-around_small" style="border-radius: 5px; box-shadow: 5px 5px 10px #b8b8b8, -5px -5px 10px #ffffff;">
+                    <c-alert-message-lwc
+                        message-type="error"
+                        message="This is a Error message">
+                    </c-alert-message-lwc>
+                </div>
+                
+            </lightning-tab>
+
+            <lightning-tab label="PDF Generation">
+                <div class="slds-theme_default slds-m-around_small" style="border-radius: 5px; box-shadow: 5px 5px 10px #b8b8b8, -5px -5px 10px #ffffff;">
+                    <c-generate-p-d-f-cmp>
+                    </c-generate-p-d-f-cmp>
+                </div>
+                
+            </lightning-tab>
+        </lightning-tabset>
+    </div>
+    
+
+    
+    <!-- <c-record-edit-form-lwc></c-record-edit-form-lwc> -->
+    <!-- <c-drag-and-drop></c-drag-and-drop> -->
+</template>

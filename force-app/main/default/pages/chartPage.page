@@ -1,0 +1,30 @@
+<!--<apex:page standardStylesheets="false" applyBodyTag="false" contentType="application/pdf#FUR.pdf" applyHtmlTag="false" cache="false" showHeader="false" sidebar="false" renderAs="pdf">
+  <analytics:reportChart reportId="00O5i000007A83PEAS" filter="[{column:'STAGE_NAME',operator:'equals',value:'Prospecting'}]" size="tiny"/>
+    
+    <apex:chart height="250" width="350" data="{!pieData}">         
+      <apex:pieSeries dataField="data" labelField="name"/>         
+    <apex:legend position="right"/>     
+  </apex:chart> 
+</apex:page>-->
+<apex:page >
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <button onclick="capturePage()">Capture as Base64</button>
+    <div id="capturedImage"></div>
+
+    <script>
+        function capturePage() {
+            html2canvas(document.body).then(canvas => {
+                // Convert canvas to Base64 encoded image
+                var base64Image = canvas.toDataURL();
+                console.log(JSON.stringify(base64Image));
+                // Display the Base64 image or use it as needed
+                document.getElementById('capturedImage').innerHTML = '<img src="' + base64Image + '">';
+                // You can also send the Base64 image to the server or perform other actions with it.
+            });
+        }
+    </script>
+    <c:VfComponent />
+        
+        
+    
+</apex:page>

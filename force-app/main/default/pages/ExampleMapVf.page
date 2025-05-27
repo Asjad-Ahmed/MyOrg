@@ -1,0 +1,116 @@
+<apex:page >
+    <html>
+    <head>
+        <!-- Include Leaflet CSS from static resource -->
+        <link rel="stylesheet" href="{!URLFOR($Resource.Leeflet, 'leaflet.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.LeafRouteCss)}" />
+        
+
+        <!-- Include Leaflet JavaScript from static resource -->
+        <script src="{!URLFOR($Resource.Leeflet, 'leaflet.js')}"></script>
+		<script src="{!URLFOR($Resource.LeafRouteJs)}"></script>        
+
+        <!-- Custom CSS styles (optional) -->
+        <style>
+            #map {
+                height: 720px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map" ></div>
+
+        <script>
+        var map = L.map('map').setView([51.505, -0.09], 13); // Set initial coordinates and zoom level
+        
+            // Add OpenStreetMap layer to the map
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            
+            // Add a marker to the map
+            L.marker([51.505, -0.09]).addTo(map).bindPopup('Hello, World!');
+            
+        /*var latlngs = [
+                [[45.51, -122.68],
+                 [37.77, -122.43],
+                 [34.04, -118.2]],
+                [[40.78, -73.91],
+                 [41.83, -87.62],
+                 [32.76, -96.72]]
+            ];*/
+        
+         var latlngs = [
+             	[28.6236404, 77.3668853],
+    			[28.63440349872762, 77.21710618805864],
+             	[28.715052853032933, 77.43386758927171],
+             [28.61176867573947, 77.22809834555916]
+            ];
+             var loc = new L.LatLng(28.6236404, 77.3668853);
+             var loc2 = new L.LatLng(28.63440349872762, 77.21710618805864);
+        var loc3 = new L.LatLng(28.715052853032933, 77.43386758927171);
+        var loc4 = new L.LatLng(28.61176867573947, 77.22809834555916);
+            createPolyLine(loc, loc2);
+             var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+            
+            // zoom the map to the polyline
+             map.fitBounds(polyline.getBounds());
+        
+        	var marker = L.marker(loc,
+              {alt: 'Kyiv'}).addTo(map) // "Kyiv" is the accessible name of this marker
+              .bindPopup('Kyiv, loc1 is the birthplace of Leaflet!');
+        var marker2 = L.marker(loc2,
+              {alt: 'Kyiv', riseOnHover: true}).addTo(map) // "Kyiv" is the accessible name of this marker
+              .bindPopup('Kyiv, loc2 is the birthplace of Leaflet!');
+        var marker3 = L.marker(loc3,
+              {alt: 'Kyiv'}).addTo(map) // "Kyiv" is the accessible name of this marker
+              .bindPopup('Kyiv, loc3 is the birthplace of Leaflet!');
+        var marker4 = L.marker(loc4,
+              {alt: 'Kyiv'}).addTo(map) // "Kyiv" is the accessible name of this marker
+              .bindPopup('Kyiv, loc4 is the birthplace of Leaflet!');
+        //===============================================================
+        /*var map = L.map('map');
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            var route = L.Routing.control({
+                waypoints: [
+                    L.latLng(28.6236404, 77.3668853),
+                    L.latLng(28.63440349872762, 77.21710618805864)
+                ],
+                routeWhileDragging: true,
+                autoRoute : true,
+                
+                
+            });
+            route.addTo(map);
+        	
+            route.on('routesfound', function(e) {
+               var routes = e.routes;
+               var summary = routes[0].summary;
+               // alert distance and time in km and minutes
+               console.log('Total distance is ' + summary.totalDistance / 1000 + ' km ;');
+            });*/
+             
+             
+             
+             function createPolyLine(_firstLatLng, _secondLatLng) {
+                // draw the line between points
+                 L.polyline([_firstLatLng, _secondLatLng], {
+                     color: 'red'
+                 }).addTo(map);
+                 refreshDistance(_firstLatLng, _secondLatLng);
+                 _firstLatLng = _secondLatLng;
+                 return _secondLatLng;
+            }
+        
+            function refreshDistance(loc1, loc2) {
+                 var s = 'About ' + (loc1.distanceTo(loc2) / 1000).toFixed(2) + 'km away from you.</p>';
+        		console.log(s);
+            
+                
+            }
+        </script>
+    </body>
+    </html>
+</apex:page>

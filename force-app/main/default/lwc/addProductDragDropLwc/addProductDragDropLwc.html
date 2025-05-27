@@ -1,0 +1,210 @@
+<template>
+    <div class=" slds-theme_default container slds-m-top_large" >
+        <div class="slds-grid ">
+            <div class="slds-size_3-of-12 slds-box slds-scrollable" style=" position: relative; height: 80vh; z-index: 1;">
+
+                <div data-container="initial" >
+                    <lightning-input  class="box-shadow slds-m-bottom_xx-small scale-on-hover slds-m-bottom_small" type="text" variant="label-hidden" value={productSearch} placeholder="Product Search..." onchange={onProductChange}></lightning-input>
+                    <!-- <input type="text" class=" slds-m-bottom_xx-small slds-input slds-has-focus" role="combobox" value={productSearch} placeholder="Product Search..." onchange={onProductChange}/> -->
+                    <template for:each={products} for:index="index" for:item="item">
+                        <div  key={item.Id} data-id={item.Id} data-index={index} data-name={item.Name} class=" box-shadow slds-pill_container slds-p-around_small slds-m-bottom_xx-small slds-is-draggable scale-on-hover" ondrag={APonDrag} draggable="true" ondragstart={APHandleDragStart} ondragend={APOnDragEnd}>
+                            <span class="slds-pill slds-pill_link  " data-id={item.Id} data-index={index} data-name={item.Name}>
+                            <lightning-icon icon-name="standard:product" size="medium" data-id={item.Id} data-index={index} data-name={item.Name}></lightning-icon>
+                                <a href={item.recordUrl} data-id={item.Id} data-index={index} data-name={item.Name}>
+                                    <span class="slds-pill__label slds-text-heading_small slds-p-left_small">{item.Name}</span>
+                                </a>
+                            </span>
+                        </div>
+                    </template>
+                </div>
+                <template if:true={showDropBoxRemove}>
+                    <div ondragover={DPHandleDragOver} ondrop={DPHandleDrop} style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #ea121252;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        backdrop-filter: blur(2px);
+                        -webkit-backdrop-filter: blur(2px);
+                        z-index: 2;
+                    ">
+                        <div style="
+                            font-size: 2em;
+                            color: white;
+                            background-color: rgba(0, 0, 0, 0.5);
+                            padding: 20px;
+                            border-radius: 10px;
+                            text-align: center;
+                        ">
+                            Drag Here to Remove
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="slds-size_9-of-12 slds-box" data-container="dropped" ondragover={APHandleDragOver} ondrop={APHandleDrop} ondragend={DPOnDragEnd} ondrag={DPonDrag} style="display: flex; z-index: 1; flex-direction: column;  position: relative;">
+                <div class="slds-page-header" style="flex-shrink: 0;">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container slds-icon-standard-opportunity">
+                                        <lightning-icon icon-name="standard:opportunity" title="asset"></lightning-icon>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1>
+                                                <span class="slds-page-header__title slds-truncate slds-p-top_xx-small" title="Recently Viewed">Opportunity Product({opportunityLineItems.length})</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="flex: 1; overflow: auto;">
+                    <table class="slds-scrollable slds-table slds-table_cell-buffer slds-table_bordered" style="width: 100%;">
+                        <thead>
+                            <tr data-container="dropped">
+                                <th style="text-align:center" scope="col">S No.</th>
+                                <th style="text-align:center" scope="col">Name</th>
+                                <th style="text-align:center" scope="col">Price Book Entry</th>
+                                <th style="text-align:center" scope="col">Quantity</th>
+                                <th style="text-align:center; width:10%" scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={opportunityLineItems} for:item="item" for:index="index" >
+                                <tr key={item.name} data-container="dropped" data-index={index} ondragstart={DPHandleDragStart} draggable="true" class="scale-on-hover box-shadow  slds-is-draggable">
+                                    <td style="text-align:center" data-index={index}>
+                                        <span class="slds-text-heading_small" style="color: #0b5cab;" >{item.sNo}</span>
+                                    </td>
+                                    <td data-index={index} data-label="product" style="text-align:center" class="slds-text-heading_small slds-pill__label">
+                                        <a href={item.recordUrl}>
+                                            <span style="color: #0b5cab;"><b>{item.name}</b></span>
+                                        </a>
+                                    </td>
+                                    <td data-label="priceBE">
+                                        <lightning-record-picker data-index={index}
+                                            label="s"
+                                            onchange={onPriceSelect}
+                                            variant="label-hidden"
+                                            object-api-name="PricebookEntry"
+                                            filter={item.filter}
+                                            display-info={displayInfo}>
+                                        </lightning-record-picker>
+                                    </td>
+                                    <td data-label="Quantity">
+                                        <div data-container="dropped" data-index={index}>
+                                            <lightning-input type="number" variant="label-hidden" name="quantity" value={item.quantity} data-index={index} onchange={genericChange}></lightning-input>
+                                        </div>
+                                    </td>
+                                    <td style="text-align:center; width:10%">
+                                        <lightning-icon 
+                                            icon-name="utility:delete" 
+                                            data-index={index}
+                                            alternative-text="Delete Row" 
+                                            size="small" 
+                                            title="Delete Row"
+                                            onclick={removeRow}>
+                                        </lightning-icon>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="slds-modal__footer" style="flex-shrink: 0;">
+                    <button class="slds-button slds-button_brand" onclick={handleSave}>Save</button>
+                </div>
+                
+                <template if:true={showDropBoxAdd}>
+                    <div style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #de751f52;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        backdrop-filter: blur(2px);
+                        -webkit-backdrop-filter: blur(2px);
+                        z-index: 2;
+                    ">
+                        <div style="
+                            font-size: 2em;
+                            color: white;
+                            background-color: rgba(0, 0, 0, 0.5);
+                            padding: 20px;
+                            border-radius: 10px;
+                            text-align: center;
+                        ">
+                            Drag Here to Add
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+
+
+
+        <!-- <div class="slds-grid ">
+            <div class="slds-size_1-of-12"></div>
+            <div class="slds-size_5-of-12 slds-p-around_medium slds-theme_shade slds-box">
+                <div class="box-container slds-box slds-theme_default"  ondragover={handleDragOver} ondrop={handleDrop}>
+                    <b>1st Box</b>
+                    <div class="slds-m-around_small slds-theme_default slds-box" data-container="initial" style="height: 300px">
+                        <template for:each={boxes} for:item="box">
+                            <div
+                                key={box.id}
+                                class="box slds-box slds-p-horizontal_medium slds-theme_shade slds-clearfix slds-grid slds-is-draggable"
+                                draggable="true"
+                                ondragstart={handleDragStart}
+                                data-id={box.id}
+                            >
+                                {box.name}
+                            </div>
+                        </template>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="slds-size_1-of-12"></div>
+            <div class="slds-size_5-of-12 slds-p-around_medium slds-theme_shade slds-box">
+                <div class="box-container slds-box slds-theme_default"  ondragover={handleDragOver} ondrop={handleDrop}>
+                    <b>2nd Box</b>
+                    <div class="slds-m-around_small slds-theme_default slds-box" data-container="dropped" style="height: 300px">
+                        <template for:each={droppedBoxes} for:item="box">
+                            <div
+                                key={box.id}
+                                class="box slds-box slds-p-horizontal_medium slds-theme_shade slds-clearfix slds-grid slds-is-draggable"
+                                draggable="true"
+                                ondragstart={handleDragStart}
+                                data-id={box.id}
+                            >
+                                {box.name}
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <template if:true={isLoading}>
+            <div>
+                <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+        
+    </div>
+</template>

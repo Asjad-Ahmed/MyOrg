@@ -1,0 +1,18 @@
+<apex:page showHeader="false" sidebar="false">
+    <apex:includeLightning />    
+    <div id="LightningComponentid" />    
+    <script>
+    
+     
+        $Lightning.use("c:ScheduleMeetingApp", function() {
+            $Lightning.createComponent("c:ScheduleMeetingLwc",
+                                       { 
+                                            recordId: '{!$CurrentPage.parameters.Id}' 
+                                       },
+                                       "LightningComponentid",
+                                       function(cmp) {
+                                           console.log('LWC Componenet added in VF page');
+                                       });
+        });
+        </script>
+</apex:page>

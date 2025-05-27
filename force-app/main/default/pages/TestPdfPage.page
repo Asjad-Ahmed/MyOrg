@@ -1,0 +1,163 @@
+<apex:page standardStylesheets="false" standardController="Account"  cache="false" showHeader="false" sidebar="false" >
+    <head>
+        <style type="text/css">
+            body {
+                -webkit-user-select: none;  /* Chrome all / Safari all */
+                -moz-user-select: none;     /* Firefox all */
+                -ms-user-select: none;      /* IE 10+ */
+                -o-user-select: none;
+                user-select: none;
+            }
+            @page{
+                padding-top: 30px;
+                size: 12in 12in;/* width height */
+            }
+             @page 
+            {
+                /* @top-center 
+                {
+                    content: element(header);
+                } */
+
+                @bottom-left 
+                {
+                    content: element(footer);
+                }
+            } 
+            div.footer 
+            {
+                background-color: #000000;
+                color: white;
+                display: block;
+                padding: 5px;
+                position: running(footer);
+            }
+            /* div.header 
+            {
+                position: running(header);
+            }
+           
+            .pagenumber:before 
+            {
+                content: counter(page);
+            }
+            .pagecount:before 
+            {
+                content: counter(pages);
+            }             */
+            table.gridtable {
+                page-break-inside: avoid;
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 15px;
+            }
+
+            table.gridtable thead th {
+                page-break-inside: avoid;
+                border: 1px solid black;
+                font-family: Sans-serif;
+                background-color: #fffb00;
+                text-align: center;
+                word-wrap: break-word; 
+            }
+            
+            table.gridtable2 thead th {
+                page-break-inside: avoid;
+                font-family: Sans-serif;
+                border: 1px solid black;
+                text-align: center;
+                word-wrap: break-word; 
+            }
+            
+            table.gridtable2 td {
+                text-align: center;
+                font-family: Sans-serif;
+                border: 1px solid black;
+                padding: 5px; 
+                word-wrap: break-word; 
+            }
+
+            table.gridtable td {
+                text-align: center;
+                font-family: Sans-serif;
+                border: 1px solid black;
+                padding: 5px; 
+                word-wrap: break-word; 
+            }
+        </style>
+        <script type="text/javascript"> 
+            function disableRightClick() 
+            { 
+                alert("Sorry, right click is not allowed !!"); 
+            return false; 
+            } 
+        </script> 
+    </head>
+    <body oncontextmenu=" return disableRightClick();">
+        <div class="footer">
+            <table style="width:100%">    
+                <tr> 
+                <td style="font-family: Sans-serif;text-align: left; width:80%"><b> House No: 152, Ram Nagar krishan Nagar East Delhi-110051</b></td>
+                <td style="font-family: Sans-serif;text-align: right; width:20%"><b>www.dartdesign.in</b></td>
+                </tr> 
+            </table>
+           
+        </div>
+        <table class="gridtable2" style="border: 3px solid black;width: 100%;border-collapse: collapse; margin-bottom: 20px">    
+            <thead>
+                <tr > 
+                    <th style="text-align: center">
+                            <b>Estimate</b>
+                    </th>
+                </tr>
+            </thead> 
+        </table>
+
+        <table style="width:100%;margin-bottom: 30px">    
+            <tr> 
+            <td style="font-family: Sans-serif;text-align: left; width:50%"><b>To</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>Estimate No:</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b></b></td>
+            </tr> 
+            <tr> 
+            <td style="font-family: Sans-serif;text-align: left; width:50%"><b></b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>Dated:</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>
+                
+            </b></td>
+            </tr> 
+            <tr> 
+            <td style="font-family: Sans-serif;text-align: left; width:50%"><b></b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>GSTIN:</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>07AAFCD7159K1Z9</b></td>
+            </tr> 
+            <tr> 
+            <td style="font-family: Sans-serif;text-align: left; width:50%"><b></b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>PAN:</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>AAFCD7159K</b></td>
+            </tr> 
+            <tr> 
+            <td style="font-family: Sans-serif;text-align: left; width:50%"><b>GSTN -</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>STATE:</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>DELHI</b></td>
+            </tr> 
+            <tr> 
+            <td style="font-family: Sans-serif;text-align: left; width:50%"><b>State - </b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>STATE CODE:</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>07</b></td>
+            </tr> 
+            <tr> 
+            <td style="font-family: Sans-serif;text-align: left; width:50%"><b>State Code - </b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>SAC</b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b>87578</b></td>
+            </tr> 
+            <!--<tr> 
+            <td style="font-family: Sans-serif;text-align: left; width:50%"><b></b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b></b></td>
+            <td style="font-family: Sans-serif;text-align: right; width:25%"><b></b></td>
+            </tr> -->
+        </table>
+    </body>
+    
+   
+</apex:page>

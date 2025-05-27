@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Chunk File Upload" icon-name="custom:custom18">  
+        
+        <div class="slds-p-around_small">
+            <lightning-input type="file" label="Select Multiple Files" class="" onchange={handleInputFileChange} 
+                            name="fileUpload"></lightning-input>
+            <template if:true={fileName}>
+                <div>
+                    <lightning-pill label={fileName} onremove={removeReceiptImage}></lightning-pill>
+                    <hr class="progressBar" style={progressBar}></hr>
+                </div>
+            </template>
+        </div>
+        <div style="position:relative;">
+            <template if:true={showSpinner} >
+                <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+            </template>
+            <template if:false={showSpinner} >
+                <lightning-button variant="brand" label="Upload" title="upload" onclick={uploadFiles} class="slds-p-around_small"></lightning-button>
+            </template>
+        </div>
+    </lightning-card>
+</template>

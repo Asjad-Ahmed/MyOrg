@@ -1,0 +1,146 @@
+<apex:component controller="OpportunityChartController"  >
+    <apex:attribute type="String" name="recordId" description="Account Id" assignTo="{!accountId}" />
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <style>
+            .chart-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                 /* Optionally, set a specific height for the container */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Your chart container element -->
+            <div class="chart-container">
+                <div id="piechart" style="width:900px; height:400px; padding-left:550px; padding-top:100px  "></div>
+                
+            </div>
+            <div class="chart-container">
+                
+                <div id="barchart"  style="width:1300px; height:600px;" ></div>
+            </div>
+             
+            
+            
+            
+            <!--Bar chart -->
+                <script>
+                var options = {
+                    title: {
+                        text: 'Progress Report',
+                        align: 'center',
+                        margin: 10,
+                        offsetX: 0,
+                        offsetY: 0,
+                        floating: false,
+                        style: {
+                            fontSize:  '20px',
+                            fontWeight:  'bold',
+                            fontFamily:  undefined,
+                            color:  '#1F497F'
+                        },
+                    },
+                    
+                    colors: ['#3C7AC3', '#C83C3B', '#8FB442'],
+                    series: [
+                        {
+                            name: 'Electrical',
+                            data: [44, 55, 57, 56]
+                        }, 
+                        {
+                            name: 'Fire',
+                            data: [76, 85, 101, 98]
+                        },
+                        {
+                            name: 'Structural',
+                            data: [35, 41, 36, 26]
+                        }
+                    ],
+                    chart: {
+                        type: 'bar',
+                        height: 350
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            columnWidth: '90%',
+                            endingShape: 'rounded'
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        show: true,
+                        width: 3,
+                        colors: ['transparent']
+                    },
+                    xaxis: {
+                        categories: ['Priority 1', 'Priority 2', 'Priority 3', 'Priority 4'],
+                    },
+                    yaxis: {
+                        title: {
+                            text: ''
+                        }
+                    },
+                    fill: {
+                        opacity: 1
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function (val) {
+                                return  val
+                            }
+                        }
+                    }
+                };
+        
+        var chart = new ApexCharts(document.querySelector("#barchart"), options);
+        chart.render();
+        </script>
+        
+        <!--Pie chart -->
+        <script> 
+        	var options = {
+                title: {
+                        text: 'Overall Progress',
+                        align: 'center',
+                        margin: 10,
+                        offsetX: 0,
+                        offsetY: 0,
+                        floating: false,
+                        style: {
+                            fontSize:  '20px',
+                            fontWeight:  'bold',
+                            fontFamily:  undefined,
+                            color:  '#1F497F'
+                        },
+                    },
+              series: [50, 50],
+              chart: {
+              width: 380,
+              type: 'pie',
+            },
+            labels: ['Team A', 'Team B'],
+            responsive: [{
+              breakpoint: 480,
+              options: {
+                chart: {
+                  width: 200
+                },
+                legend: {
+                  position: 'bottom'
+                }
+              }
+            }]
+            };
+    
+            var chart = new ApexCharts(document.querySelector("#piechart"), options);
+            chart.render();
+        </script>
+    </body>
+    
+    
+</apex:component>

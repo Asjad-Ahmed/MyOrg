@@ -1,0 +1,30 @@
+/* Existing styles */
+.scale-on-hover {
+    transition: transform 0.3s ease-in-out;
+}
+
+.scale-on-hover:hover {
+    transform: scale(1.04);
+    z-index: 4;
+    animation: diagonal-shake 0.1s; /* Apply the diagonal shake animation on hover */
+}
+
+.box-shadow{
+    border-radius: 5px; 
+    box-shadow: 5px 5px 10px #8b8b8b, -5px -5px 10px #ffffff;
+}
+
+/* Keyframes for the diagonal rotational shaking animation */
+@keyframes diagonal-shake {
+    0% { transform: scale(1.02) rotate(0); }
+    10% { transform: scale(1.02) rotate(-1deg); }
+    20% { transform: scale(1.02) rotate(1deg); }
+    30% { transform: scale(1.02) rotate(-1deg); }
+    40% { transform: scale(1.02) rotate(1deg); }
+    50% { transform: scale(1.02) rotate(-1deg); }
+    60% { transform: scale(1.02) rotate(1deg); }
+    70% { transform: scale(1.02) rotate(-1deg); }
+    80% { transform: scale(1.02) rotate(1deg); }
+    90% { transform: scale(1.02) rotate(-1deg); }
+    100% { transform: scale(1.02) rotate(0); }
+}

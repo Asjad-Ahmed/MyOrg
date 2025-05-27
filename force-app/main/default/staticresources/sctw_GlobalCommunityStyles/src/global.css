@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Typography */
+
+body * {
+  @apply font-primary font-normal
+}
+
+body h1, body h2, body h3, body h4, body h5, body h6 {
+  @apply font-header font-bold text-lwc-text
+}
+
+body h1 {
+  @apply font-bold text-xl mt-8 mb-4
+}
+
+body h2 {
+  @apply font-bold text-lg mt-4 mb-2
+}
+
+body h3 {
+  @apply font-bold text-base mt-2 mb-0
+}
+
+body p {
+  @apply font-primary text-base text-lwc-text mt-2 mb-0
+}
+
+/* Links */
+
+body a {
+  @apply text-lwc-link no-underline
+}
+
+body a:active, body a:hover, body a:focus {
+  @apply underline
+}
+
+/* Standard Content Layouts */
+
+.comm-layout-column.slds-col_padded,
+.comm-layout-column.slds-col--padded {
+  @apply p-4
+}
+
+/* Global Navigation Bar */
+
+header .forceCommunityGlobalNavigation {
+  @apply bg-lwc-nav-bg
+}
+
+header .forceCommunityGlobalNavigation .slds-list_vertical {
+  @apply bg-lwc-nav-bg
+}
+
+header .forceCommunityGlobalNavigation .slds-p-vertical--xx-small.slds-p-horizontal--small.slds-grid {
+  @apply px-0
+}
+
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item a,
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item button {
+  @apply font-primary font-normal text-base text-lwc-nav-text px-4 py-4
+}
+
+@screen md {
+  header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item a,
+  header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item button {
+    @apply py-2
+  }
+}
+
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item a:hover,
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item a:focus,
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item button:hover,
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item button:focus {
+  @apply bg-lwc-nav-bg underline
+}
+
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item button:focus {
+  @apply shadow-none
+}
+
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item a.slds-is-active:not([data-type="home"]),
+header .forceCommunityGlobalNavigation .comm-navigation__list .slds-list__item .comm-navigation__item button.slds-is-active:not([data-type="home"]) {
+  @apply bg-lwc-nav-bg
+}
+
+/* Global Search Input */
+
+header .forceCommunityGlobalSearchInput .forceSearchInputDesktop .contentWrapper {
+  @apply border-none rounded-none
+}
+
+header .forceCommunityGlobalSearchInput .forceSearchInputDesktop .contentWrapper.focused {
+  @apply border-none shadow-none
+}
+
+header .forceCommunityGlobalSearchInput .forceSearchInputDesktop .slds-input__icon.inputIcon {
+  @apply text-lwc-brand
+}
+
+header .forceCommunityGlobalSearchInput .forceSearchInputDesktop .uiInput .uiInputTextForAutocomplete {
+  @apply text-base rounded-none transition-none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+header .forceCommunityGlobalSearchInput .forceSearchInputDesktop .uiInput .uiInputTextForAutocomplete:focus {
+  @apply border-0 border-b-2 border-solid border-lwc-brand pb-0
+}
+
+/* User Profile Menu */
+
+header .selfServiceUserProfileMenu .login a .linkLabel {
+  @apply font-primary font-normal text-base text-right text-lwc-nav-text
+}
+
+header .selfServiceUserProfileMenu .login a:hover .linkLabel,
+header .selfServiceUserProfileMenu .login a:focus .linkLabel {
+  @apply underline
+}
+
+header .selfServiceUserProfileMenu .selfServiceProfileMenuTrigger a.trigger-link {
+  @apply flex justify-end items-center font-primary font-normal text-base text-lwc-nav-text p-0
+}
+
+header .selfServiceUserProfileMenu .selfServiceProfileMenuTrigger a.trigger-link:focus {
+  @apply border-none shadow-none
+}
+
+header .selfServiceUserProfileMenu .selfServiceProfileMenuTrigger .profileIcon {
+  @apply flex-shrink-0
+}
+
+header .selfServiceUserProfileMenu .selfServiceProfileMenuTrigger .profileName {
+  @apply max-w-none font-normal text-base pl-2 pr-1
+}
+
+header .selfServiceUserProfileMenu .menuList .uiMenuItem {
+  @apply text-base
+}

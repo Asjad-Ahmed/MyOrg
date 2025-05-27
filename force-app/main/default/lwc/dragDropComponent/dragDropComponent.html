@@ -1,0 +1,51 @@
+<template>
+    <div class=" slds-theme_default container slds-m-top_large">
+
+
+        <div class="slds-grid ">
+            <div class="slds-size_1-of-12"></div>
+            <div class="slds-size_5-of-12 slds-p-around_medium slds-theme_shade slds-box">
+                <div class="box-container slds-box slds-theme_default" ontouchmove={handleDragOver}  ondragover={handleDragOver} ontouchend={handleDrop} ondrop={handleDrop}>
+                    <b>1st Box</b>
+                    <div class="slds-m-around_small slds-theme_default slds-box" data-container="initial" style="height: 300px">
+                        <template for:each={boxes} for:item="box">
+                            <div
+                                key={box.id}
+                                class="box slds-box slds-p-horizontal_medium slds-theme_shade slds-clearfix slds-grid slds-is-draggable"
+                                draggable="true"
+                                ondragstart={handleDragStart}
+                                ontouchstart={handleDragStart}
+                                data-id={box.id}
+                            >
+                                {box.name}
+                            </div>
+                        </template>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="slds-size_1-of-12"></div>
+            <div class="slds-size_5-of-12 slds-p-around_medium slds-theme_shade slds-box">
+                <div class="box-container slds-box slds-theme_default" ontouchmove={handleDragOver} ondragover={handleDragOver} ontouchend={handleDrop} ondrop={handleDrop}>
+                    <b>2nd Box</b>
+                    <div class="slds-m-around_small slds-theme_default slds-box" data-container="dropped" style="height: 300px">
+                        <template for:each={droppedBoxes} for:item="box">
+                            <div
+                                key={box.id}
+                                class="box slds-box slds-p-horizontal_medium slds-theme_shade slds-clearfix slds-grid slds-is-draggable"
+                                draggable="true"
+                                ondragstart={handleDragStart}
+                                ontouchstart={handleDragStart}
+                                data-id={box.id}
+                            >
+                                {box.name}
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</template>

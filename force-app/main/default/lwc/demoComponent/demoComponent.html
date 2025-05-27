@@ -1,0 +1,159 @@
+<template>
+    <h3 class="slds-section__title slds-theme_shade headerstyle" >
+        <span class="slds-truncate slds-p-horizontal_small slds-align_absolute-center" title="Type of Service">
+            New Lead
+        </span>
+    </h3>
+    
+    <div class="slds-m-top_medium slds-theme_shade headerstyle">
+        <div class="slds-form_horizontal slds-align_absolute-center slds-form slds-grid slds-wrap">
+            <div class="slds-size_5-of-12">
+                <lightning-radio-group
+                    name="leadType"
+                    label="Lead Type"
+                    options={leadTypeOptions}
+                    onchange={genericChange}
+                    variant="label-inline"
+                    >
+                </lightning-radio-group>
+            </div>
+        </div>
+        <template if:true={isBusinessLead}>
+        <div class="slds-form_horizontal slds-form slds-grid slds-wrap slds-p-vertical_small slds-p-left_medium">
+            <div class="slds-size_5-of-12">
+                <lightning-input 
+                    type="text" 
+                    label="Company Name" 
+                    name="companyName" 
+                    onchange={genericChange}
+                    >
+                </lightning-input>
+            </div>
+            <div class="slds-size_1-of-12">
+            </div>
+            <div class="slds-size_5-of-12 slds-m-left_xx-large">
+               
+                
+            </div>
+            <div class="slds-size_1-of-12"></div>
+        </div>
+        
+            <div class="slds-form_horizontal slds-form slds-grid slds-wrap slds-p-vertical_small slds-p-left_medium">
+                <div class="slds-size_5-of-12">
+                    <lightning-input 
+                        type="text" 
+                        label="Contact First Name" 
+                        name="contactFirstName" 
+                        value=""
+                        onchange={genericChange}
+                        >
+                    </lightning-input>
+                </div>
+                <div class="slds-size_1-of-12">
+                </div>
+                <div class="slds-size_5-of-12 slds-m-left_xx-large">
+                    <lightning-input 
+                        type="text" 
+                        label="Contact Last Name" 
+                        name="contactLastName" 
+                        value=""
+                        onchange={genericChange}
+                        >
+                    </lightning-input>
+                </div>
+                <div class="slds-size_1-of-12"></div>
+            </div>
+        </template>
+        <template if:true={isIndividualLead}>
+            <div class="slds-form_horizontal slds-form slds-grid slds-wrap slds-p-vertical_small slds-p-left_medium">
+                <div class="slds-size_5-of-12">
+                    <lightning-input 
+                        type="text" 
+                        label="First Name" 
+                        name="FirstName" 
+                        value=""
+                        onchange={genericChange}
+                        >
+                    </lightning-input>
+                </div>
+                <div class="slds-size_1-of-12">
+                </div>
+                <div class="slds-size_5-of-12 slds-m-left_xx-large">
+                    <lightning-input 
+                        type="text" 
+                        label="Last Name" 
+                        name="LastName" 
+                        value=""
+                        onchange={genericChange}
+                        >
+                    </lightning-input>
+                </div>
+                <div class="slds-size_1-of-12"></div>
+            </div>
+        </template>
+        <div class="slds-form_horizontal slds-form slds-grid slds-wrap slds-p-vertical_small slds-p-left_medium">
+            <div class="slds-size_5-of-12">
+                
+                <lightning-input 
+                    type="text" 
+                    label="Opportunity Name" 
+                    name="opptyName" 
+                    onchange={genericChange}
+                    >
+                </lightning-input>
+            </div>
+            <div class="slds-size_1-of-12">
+            </div>
+            <div class="slds-size_5-of-12 slds-m-left_xx-large">
+                <lightning-combobox
+                name="stage"
+                label="Stage"
+                options={stageOptions}
+                onchange={genericChange} >
+            </lightning-combobox>
+            </div>
+            <div class="slds-size_1-of-12"></div>
+        </div>
+        <div class="slds-form_horizontal slds-form slds-grid slds-wrap slds-p-vertical_small slds-p-left_medium">
+            <div class="slds-size_5-of-12">
+                <lightning-input 
+                    type="date" 
+                    label="Close Date" 
+                    
+                    name="closeDate" 
+                    onchange={genericChange}
+                    min={todayDate}
+                    >
+                </lightning-input>
+            </div>
+            <div class="slds-size_1-of-12">
+            </div>
+            <div class="slds-size_5-of-12 slds-m-left_xx-large">
+                <div class="slds-size_5-of-12">
+                    <lightning-input 
+                        type="checkbox" 
+                        label="Gender" 
+                        name="gender" 
+                        checked={genderValue}
+                        onchange={genericChange}
+                        >
+                    </lightning-input>
+                </div>
+            </div>
+            <div class="slds-size_1-of-12"></div>
+        </div>
+        <div class="slds-align_absolute-center slds-p-around_large">
+            <lightning-button  variant="Brand" type="submit" onclick={handleSubmit} name="submit" label="Submit"
+                class="slds-m-right_medium primaryColorTeal">
+            </lightning-button>
+        </div>
+    </div>
+    
+    
+    <template if:true={isLoading}>
+        <div>
+            <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+        </div>
+    </template>
+
+</template>

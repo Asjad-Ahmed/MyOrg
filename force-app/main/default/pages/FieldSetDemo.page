@@ -1,0 +1,31 @@
+<apex:page standardController="Account">
+    
+    <apex:form >
+        
+        <apex:pageBlock >
+            
+            <apex:pageBlockButtons >
+                
+                <apex:commandButton value="Save" action="{!Save}" />
+                
+                <apex:commandButton value="Save & New" />
+                
+                <apex:commandButton value="Cancel" action="{!cancel}" />
+                
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection title="Account Information">
+                
+                <apex:repeat value="{!$ObjectType.Account.FieldSets.Account_Field_Set}" var="fields">
+                    
+                    <apex:inputField value="{!Account[fields]}" />
+                    
+                </apex:repeat>
+                
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

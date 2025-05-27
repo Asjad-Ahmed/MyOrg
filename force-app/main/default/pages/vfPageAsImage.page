@@ -1,0 +1,45 @@
+<apex:page controller="CaptureAndSaveImageController">
+    
+    <c:ChartVFComponent recordId=""></c:ChartVFComponent>
+    <head>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    </head>
+    <body>
+        <!-- Your Visualforce page content here -->
+
+        <script type="text/javascript">
+            // Function to capture the screenshot and save it under the specified Account record
+            var accountId = '{!accountId}';
+        	console.log('accountId--'+accountId);
+            function captureAndSaveImage(accountId) {
+                html2canvas(document.body).then(function(canvas) {
+                    // Convert the canvas to base64 data URL
+                    var imgData = canvas.toDataURL('image/png');
+                    imgData = imgData.slice(22);
+                    console.log(JSON.stringify(imgData));
+                    
+                    // Apex method
+                    /*Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.CaptureAndSaveImageController.saveImage}',
+                        accountId,
+                        imgData,
+                        function(result, event) {
+                            if (event.status) {
+                                console.log('Image saved successfully.');
+                            } else {
+                                console.error('Error saving image: ' + event.message);
+                            }
+                        }
+                    );*/
+                });
+            }
+
+            // Connected call back
+            window.onload = function() {
+                setTimeout(function() {
+                    captureAndSaveImage('{!accountId}');
+                }, 2000);
+            };
+        </script>
+    </body>
+</apex:page>

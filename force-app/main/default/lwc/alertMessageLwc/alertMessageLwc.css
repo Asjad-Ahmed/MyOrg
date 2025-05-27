@@ -1,0 +1,39 @@
+.alert-box {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.icon {
+    margin-right: 10px;
+    animation: shake 0.5s infinite;
+}
+
+.animated-icon {
+    color: black;
+    width: 20px;
+    height: 20px;
+}
+
+/* Animation: Wrench breaking effect */
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.message-content {
+    flex-grow: 1;
+}
+
+.close-button {
+    font-size: 20px;
+    cursor: pointer;
+    padding-left: 10px;
+}
