@@ -32,6 +32,28 @@
                 </div>
                 
             </lightning-tab>
+            <lightning-tab label="Lightning Record Picker">
+                <div class="slds-theme_default slds-m-around_small" style="border-radius: 5px; box-shadow: 5px 5px 10px #b8b8b8, -5px -5px 10px #ffffff;">
+                    <lightning-record-picker
+                        label="Contacts"
+                        placeholder="Search Contacts..."
+                        object-api-name="Contact"
+                        display-info={displayInfo}
+                       
+                    >
+                    </lightning-record-picker>
+                </div>
+                
+            </lightning-tab>
+            <lightning-tab label="Lightning GraphQL">
+                <div class="slds-theme_default slds-m-around_small" style="border-radius: 5px; box-shadow: 5px 5px 10px #b8b8b8, -5px -5px 10px #ffffff;">
+                    <c-graphql-lwc
+                        
+                    >
+                    </c-graphql-lwc>
+                </div>
+                
+            </lightning-tab>
         </lightning-tabset>
     </div>
     
